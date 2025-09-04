@@ -1,40 +1,41 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>LIGMA AI</title>
-    <style>
-        body { display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
-        #container { text-align: center; }
-        video, iframe { max-width: 100%; }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vimeo then Zapier Chat</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      width: 100vw;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #000;
+    }
+    iframe {
+      width: 80%;
+      height: 80%;
+      border: none;
+    }
+  </style>
 </head>
 <body>
-<div id="container">
-    <!-- Video will play first -->
-    <video id="introVideo" width="400" height="300" autoplay muted>
-    <source src="potato.mp4" type="video/mp4">
-</video>
+  <!-- Vimeo Video -->
+  <iframe id="vimeoPlayer" src="https://player.vimeo.com/video/1115986346?autoplay=1&muted=1"
+          allow="autoplay; fullscreen" allowfullscreen></iframe>
 
-</div>
+  <script src="https://player.vimeo.com/api/player.js"></script>
+  <script>
+    const iframe = document.getElementById('vimeoPlayer');
+    const player = new Vimeo.Player(iframe);
 
-<script>
-    const container = document.getElementById('container');
-    const video = document.getElementById('introVideo');
-
-    video.addEventListener('ended', () => {
-        // Remove video
-        container.innerHTML = "";
-
-        // Add Zapier chatbot iframe
-        const iframe = document.createElement('iframe');
-        iframe.src = 'https://interfaces.zapier.com/embed/chatbot/cmf5wri0y002812ufsjpdxpma';
-        iframe.width = "400px";
-        iframe.height = "600px";
-        iframe.allow = "clipboard-write *";
-        iframe.style.border = "none";
-
-        container.appendChild(iframe);
+    // Listen for video ended
+    player.on('ended', function() {
+      // Replace Vimeo iframe with Zapier Chatbot
+      iframe.src = "https://interfaces.zapier.com/embed/chatbot/cmf5wri0y002812ufsjpdxpma";
     });
-</script>
+  </script>
 </body>
 </html>
