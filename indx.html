@@ -2,29 +2,40 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Video Player</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LIGMA AI</title>
   <style>
     body {
+      margin: 0;
+      height: 100vh;
+      width: 100vw;
       display: flex;
       justify-content: center;
       align-items: center;
-      height: 100vh;
-      margin: 0;
-      background: #111;
+      background-color: #000;
     }
-    video {
-      max-width: 90%;
-      max-height: 90%;
-      border: 4px solid #fff;
-      border-radius: 12px;
-      box-shadow: 0 0 20px rgba(255,255,255,0.2);
+    iframe {
+      width: 80%;
+      height: 80%;
+      border: none;
     }
   </style>
 </head>
 <body>
-  <video controls autoplay>
-    <source src="potato.mp4" type="video/mp4">
-    Your browser does not support the video tag.
-  </video>
+  <!-- Vimeo Video -->
+  <iframe id="vimeoPlayer" src="https://player.vimeo.com/video/1115986346?autoplay=1"
+          allow="autoplay; fullscreen" allowfullscreen></iframe>
+
+  <script src="https://player.vimeo.com/api/player.js"></script>
+  <script>
+    const iframe = document.getElementById('vimeoPlayer');
+    const player = new Vimeo.Player(iframe);
+
+    // Listen for video ended
+    player.on('ended', function() {
+      // Replace Vimeo iframe with Zapier Chatbot
+      iframe.src = "https://interfaces.zapier.com/embed/chatbot/cmf5wri0y002812ufsjpdxpma";
+    });
+  </script>
 </body>
 </html>
